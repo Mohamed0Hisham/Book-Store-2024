@@ -1,14 +1,24 @@
+// my dependecies
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
+
+//my routes
+import userRoutes from './routes/user.Routes.js'
+import bookRoutes from './routes/book.routes.js'
+import authRoutes from './routes/auth.routes.js'
+
 dotenv.config();
 
+//my app
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-
+app.use("/user", userRoutes);
+app.use("/book", bookRoutes);
+app.use("/auth", authRoutes);
 
 app.use((err, req, res, next) => {
 	const statusCode = err.statusCode || 500;
